@@ -9,10 +9,17 @@ export class UsersRest extends BasicRest {
   }
 
   public async auth(request: UsersLoginRequest) {
-    return this.postRequest(`/v2/login`, {
+    return this.postRequest(`/v2/login?clientId=${request.clientId}`, {
       clientId: 'default',
       login: request.username,
       password: request.password
+    })
+  }
+
+  public async refreshToken(request: { clientId: string; token: string }) {
+    return this.postRequest(`/v2/login?clientId=${request.clientId}`, {
+      clientId: 'default',
+      refreshToken: request.token
     })
   }
 }
