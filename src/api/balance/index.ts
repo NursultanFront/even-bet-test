@@ -7,7 +7,7 @@ export class BalanceRest extends BasicRest {
     super(endpoint)
   }
 
-  public async fetchGames(request: { clientId: string; token: string }) {
+  public async fetchBalance(request: { clientId: string; token: string }) {
     return this.getRequest(`/users/me/balance?clientId=${request.clientId}&auth=${request.token}`)
   }
 }
