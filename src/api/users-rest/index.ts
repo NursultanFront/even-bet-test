@@ -1,7 +1,7 @@
 import { BasicRest } from '../basic-rest'
 
 import type { AxiosInstance } from 'axios'
-import type { TokenPost, User, UsersLoginRequest } from './types'
+import type { UserData, UsersLoginRequest } from './types'
 
 export class UsersRest extends BasicRest {
   public constructor(endpoint: AxiosInstance) {
@@ -9,7 +9,7 @@ export class UsersRest extends BasicRest {
   }
 
   public async auth(request: UsersLoginRequest) {
-    return this.postRequest(`/v2/login?clientId=${request.clientId}`, {
+    return this.postRequest<UserData>(`/v2/login?clientId=${request.clientId}`, {
       clientId: 'default',
       login: request.username,
       password: request.password

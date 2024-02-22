@@ -1,15 +1,24 @@
+export interface UserData {
+  data: User[]
+}
+
+export interface User {
+  id: string
+  type: string
+  attributes: Attributes
+}
+
+export interface Attributes {
+  token: string
+  'token-type': string
+  'refresh-token': string
+  'life-time': number
+  'need-tfa': boolean
+}
+
 export type TokenPost = {
   refresh: string
   access: string
-}
-
-export type User = {
-  email: string
-  first_name: string
-  last_name: string
-  patronymic: string
-  position: any | null
-  department: string | null
 }
 
 export type UsersLoginRequest = {

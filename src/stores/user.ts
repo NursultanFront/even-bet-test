@@ -1,23 +1,22 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import { api } from '@/api'
+import type { UserData } from '@/api/users-rest/types'
 
 export const useUserStore = defineStore('user', () => {
-  const clientId = 'default'
-  const token = localStorage.getItem('token')
-  async function login(login: string, password: string) {
-    try {
-      const res = await api.users.auth({ clientId: clientId, username: login, password })
+  const user = ref<UserData | null>(null)
 
-      return res
-    } catch (error) {
-      throw new Error(``)
-    }
+  const isAuth = computed(() => !!user.value)
+
+  const clientId = 'default'
+  const token = localStorage.getItem('token') as string
+
+  async function login(login: string, password: string) {
+    const res = await api.users.auth({ clientId: clientId, username: login, password })
+    user.value = res
   }
 
   async function refreshToken() {
-    if (!token) return
-
     try {
       const res = await api.users.refreshToken({ clientId: clientId, token: token })
       return res
@@ -26,5 +25,5 @@ export const useUserStore = defineStore('user', () => {
     }
   }
 
-  return { login, refreshToken }
+  return { user, isAuth, login, refreshToken }
 })
