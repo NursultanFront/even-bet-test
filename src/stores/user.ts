@@ -9,11 +9,12 @@ export const useUserStore = defineStore('user', () => {
   const isAuth = computed(() => !!user.value)
 
   const clientId = 'default'
-  const token = localStorage.getItem('token') as string
+  const token = localStorage.getItem('refresh-token') as string
 
   async function login(login: string, password: string) {
     const res = await api.users.auth({ clientId: clientId, username: login, password })
     user.value = res
+    localStorage.setItem('refresh-token', user.value.data[0].attributes['refresh-token'])
   }
 
   async function refreshToken() {

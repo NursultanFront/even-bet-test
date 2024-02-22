@@ -30,7 +30,8 @@ const onFinishLogin = () => {
   store
     .login(login.value, password.value)
     .then(() => router.push('/'))
-    .catch((error) => {
+    .catch((error: Error) => {
+      console.log(error)
       setError(FormField.Password, 'Неверный адрес электронной почты или пароль')
     })
 }
