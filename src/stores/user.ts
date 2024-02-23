@@ -15,12 +15,14 @@ export const useUserStore = defineStore('user', () => {
     const res = await api.users.auth({ clientId: clientId, username: login, password })
     user.value = res
     localStorage.setItem('refresh-token', user.value.data[0].attributes['refresh-token'])
+    localStorage.setItem('token', user.value.data[0].attributes.token)
   }
 
   async function refreshToken() {
     try {
       const res = await api.users.refreshToken({ clientId: clientId, token: token })
-      return res
+      // localStorage.setItem('refresh-token', user.value.data[0].attributes['refresh-token'])
+      // localStorage.setItem('token', user.value.data[0].attributes.token)
     } catch (error) {
       throw new Error(``)
     }

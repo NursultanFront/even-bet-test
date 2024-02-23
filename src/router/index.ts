@@ -21,17 +21,17 @@ const router = createRouter({
   ]
 })
 
-router.beforeEach((to, from, next) => {
-  const userStore = useUserStore()
-  const isAuth = userStore.isAuth
+// router.beforeEach((to, from, next) => {
+//   const userStore = useUserStore()
+//   const isAuth = userStore.isAuth
 
-  if (to.matched.some((record) => record.meta.requiresAuth) && !isAuth) {
-    next({ name: 'login' })
-  } else if (to.matched.some((record) => record.meta.requiresUnauth) && isAuth) {
-    next({ name: 'home' })
-  } else {
-    next()
-  }
-})
+//   if (to.matched.some((record) => record.meta.requiresAuth) && !isAuth) {
+//     next({ name: 'login' })
+//   } else if (to.matched.some((record) => record.meta.requiresUnauth) && isAuth) {
+//     next({ name: 'home' })
+//   } else {
+//     next()
+//   }
+// })
 
 export default router

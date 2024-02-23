@@ -1,0 +1,51 @@
+{
+  "data": [
+    {
+      "id": "2780206-80",
+      "type": "balance",
+      "attributes": {
+        "currency": "USD",
+        "available": 64384439,
+        "in-play": 0,
+        "bonus": 0
+      }
+    },
+    {
+      "id": "2780206-65",
+      "type": "balance",
+      "attributes": {
+        "currency": "CUSTOM1",
+        "available": 378230000,
+        "in-play": 0,
+        "bonus": 0
+      }
+    },
+    {
+      "id": "2780206-66",
+      "type": "balance",
+      "attributes": {
+        "currency": "CUSTOM2",
+        "available": 1297377,
+        "in-play": 0,
+        "bonus": 0
+      }
+    }
+  ],
+  "links": {
+    "self": {
+      "href": "https://poker.evenbetpoker.com/api/web/users/me/balance?clientId=default&auth=APIE0ED07ECB5ED9B00CA81FCA333FA21B0&page=1&per-page=3"
+    },
+    "first": {
+      "href": "https://poker.evenbetpoker.com/api/web/users/me/balance?clientId=default&auth=APIE0ED07ECB5ED9B00CA81FCA333FA21B0&page=1&per-page=3"
+    },
+    "last": {
+      "href": "https://poker.evenbetpoker.com/api/web/users/me/balance?clientId=default&auth=APIE0ED07ECB5ED9B00CA81FCA333FA21B0&page=1&per-page=3"
+    }
+  },
+  "meta": {
+    "total-count": 3,
+    "page-count": 1,
+    "current-page": 1,
+    "per-page": 3
+  }
+}
