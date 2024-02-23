@@ -13,24 +13,18 @@ const gameStore = useGamesStore()
 const isVisible = ref(false)
 const gameLink = ref('')
 
-const userStore = useUserStore()
-const UPDATE_TIME = 800 * 1000
 const BALANCE_UPDATE_TIME = 30 * 1000
 
-let tokenRefreshInterval: ReturnType<typeof setInterval> | null = null
 let balanceRefreshInterval: ReturnType<typeof setInterval> | null = null
 
 onMounted(() => {
   balanceStore.getBalance()
   gameStore.getGames()
 
-  tokenRefreshInterval = setInterval(userStore.refreshToken, UPDATE_TIME)
-
   balanceRefreshInterval = setInterval(balanceStore.getBalance, BALANCE_UPDATE_TIME)
 })
 
 onUnmounted(() => {
-  if (tokenRefreshInterval !== null) clearInterval(tokenRefreshInterval)
   if (balanceRefreshInterval !== null) clearInterval(balanceRefreshInterval)
 })
 

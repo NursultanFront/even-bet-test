@@ -1,4 +1,4 @@
-export interface UserData {
+export interface UserDataResponse {
   data: User[]
 }
 
@@ -26,4 +26,12 @@ export type UsersLoginRequest = {
   password: string
 
   clientId: string
+}
+
+export interface RefreshTokenResponse {
+  token: string
+  tokenType: string
+  'refresh-token': string
+  'life-time': number
+  'need-tfa': boolean
 }

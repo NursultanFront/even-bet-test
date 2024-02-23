@@ -9,13 +9,13 @@ export type BalanceStore = {
 
 export const useBalanceStore = defineStore('balance', () => {
   const clientId = 'default'
-  const token = localStorage.getItem('token')
+  const token = localStorage.getItem('token') as string
 
   const balance = ref<BalanceStore[]>([])
 
   async function getBalance() {
     try {
-      const res = await api.balance.fetchBalance({ clientId: clientId, token: token as string })
+      const res = await api.balance.fetchBalance({ clientId: clientId, token: token })
       balance.value = res.data.map((item) => {
         return {
           balance: item.attributes.available,
