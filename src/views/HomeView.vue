@@ -32,7 +32,6 @@ const getGame = (id: string) => {
   gameStore
     .getGameDemo(id)
     .then((res) => {
-      console.log(res[0].attributes)
       gameLink.value = res[0].attributes['launch-options']['game-url']
     })
     .catch(() => {

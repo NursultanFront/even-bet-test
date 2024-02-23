@@ -1,6 +1,7 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import { api } from '@/api'
+import { useUserStore } from '@/stores/user'
 
 export type BalanceStore = {
   balance: number
@@ -9,11 +10,11 @@ export type BalanceStore = {
 
 export const useBalanceStore = defineStore('balance', () => {
   const clientId = 'default'
-  const token = localStorage.getItem('token') as string
 
   const balance = ref<BalanceStore[]>([])
 
   async function getBalance() {
+    const token = localStorage.getItem('token') as string
     try {
       const res = await api.balance.fetchBalance({ clientId: clientId, token: token })
       balance.value = res.data.map((item) => {
@@ -23,7 +24,7 @@ export const useBalanceStore = defineStore('balance', () => {
         }
       })
     } catch (error) {
-      throw new Error(``)
+      console.log(error)
     }
   }
 

@@ -31,8 +31,7 @@ const onFinishLogin = () => {
     .login(login.value, password.value)
     .then(() => router.push('/'))
     .catch((error: Error) => {
-      console.log(error)
-      setError(FormField.Password, 'Неверный адрес электронной почты или пароль')
+      setError(FormField.Password, 'Неверный логин или пароль')
     })
 }
 
