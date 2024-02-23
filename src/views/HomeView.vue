@@ -2,16 +2,11 @@
 import { onMounted, onUnmounted, ref, watch } from 'vue'
 import { useBalanceStore } from '@/stores/balance'
 import { useGamesStore } from '@/stores/games'
-import { useUserStore } from '@/stores/user'
 import TheSidebar from '@/components/main/sidebar/TheSidebar.vue'
 import PlayCard from '@/components/main/play-card/PlayCard.vue'
-import GameModalVue from '@/components/main/game-modal/GameModal.vue'
 
 const balanceStore = useBalanceStore()
 const gameStore = useGamesStore()
-
-const isVisible = ref(false)
-const gameLink = ref('')
 
 const BALANCE_UPDATE_TIME = 30 * 1000
 
@@ -27,40 +22,14 @@ onMounted(() => {
 onUnmounted(() => {
   if (balanceRefreshInterval !== null) clearInterval(balanceRefreshInterval)
 })
-
-const getGame = (id: string) => {
-  gameStore
-    .getGameDemo(id)
-    .then((res) => {
-      gameLink.value = res[0].attributes['launch-options']['game-url']
-    })
-    .catch(() => {
-      gameLink.value = 'Произошла ошибка'
-      throw new Error('Произошла ошибка')
-    })
-
-  isVisible.value = true
-}
-
-watch(isVisible, () => {
-  if (!isVisible.value) {
-    gameLink.value = ''
-  }
-})
 </script>
 
 <template>
   <main class="main">
     <TheSidebar :data="balanceStore.balance" />
     <div class="main__list">
-      <PlayCard
-        v-for="(item, idx) in gameStore.games"
-        :data="item"
-        :key="idx"
-        @on-get-game="getGame"
-      />
+      <PlayCard v-for="(item, idx) in gameStore.games" :data="item" :key="idx" />
     </div>
-    <GameModalVue v-model="isVisible" :link="gameLink" />
   </main>
 </template>
 

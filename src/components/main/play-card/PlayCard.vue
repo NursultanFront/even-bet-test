@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import { onMounted, ref, watch } from 'vue'
+import { useGamesStore } from '@/stores/games'
+import TheButton from '@/components/ui/button/TheButton.vue'
+import GameModal from '@/components/main/game-modal/GameModal.vue'
+
 interface IProps {
   data: {
     image: string
@@ -8,17 +13,41 @@ interface IProps {
 }
 
 const props = defineProps<IProps>()
+const gameStore = useGamesStore()
+const gameLink = ref('')
+const isVisible = ref(false)
 
-const emit = defineEmits<{
-  (event: 'onGetGame', id: string): void
-}>()
+function openGame() {
+  gameStore
+    .getGameDemo(props.data.id)
+    .then((res) => {
+      const url = res[0].attributes['launch-options']['game-url']
+      gameLink.value = url
+      window.open(url, '_blank')
+    })
+    .catch((error) => {
+      gameLink.value = 'Ошибка получения ссылки на игру'
+      isVisible.value = true
+      console.error('Ошибка получения ссылки на игру:', error)
+    })
+}
+
+watch(isVisible, () => {
+  if (!isVisible.value) {
+    gameLink.value = ''
+  }
+})
 </script>
 
 <template>
-  <div class="play-card" @click="emit('onGetGame', props.data.id)">
+  <div class="play-card">
     <img class="play-card__image" :src="props.data.image" alt="Картинка игры" />
-    <p class="play-card__title">{{ props.data.name }}</p>
+    <div class="play-card__content">
+      <p class="play-card__title">{{ props.data.name }}</p>
+      <TheButton @click="openGame">Play Demo</TheButton>
+    </div>
   </div>
+  <GameModal v-model="isVisible" :link="gameLink" />
 </template>
 
 <style scoped lang="scss">
@@ -28,16 +57,22 @@ const emit = defineEmits<{
   gap: 20px;
 
   background-color: rgb(70, 70, 70);
-
+  width: 300px;
   cursor: pointer;
 
   &__image {
-    width: 300px;
     height: 300px;
   }
 
   &__title {
     color: aliceblue;
+  }
+
+  &__content {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 }
 </style>
