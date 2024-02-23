@@ -3,11 +3,13 @@ import { RouterView } from 'vue-router'
 import { useUserStore } from '@/stores/user'
 
 const userStore = useUserStore()
-setInterval(() => {
-  if (userStore.isAuth) {
-    userStore.refreshToken()
-  }
-}, 800 * 1000)
+const UPDATE_TIME = 800 * 1000
+
+// setInterval(() => {
+//   if (userStore.isAuth) {
+//     userStore.refreshToken()
+//   }
+// }, UPDATE_TIME)
 </script>
 
 <template>

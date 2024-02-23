@@ -1,0 +1,12 @@
+[
+  {
+    "id": "1",
+    "type": "casino-demo-session",
+    "attributes": {
+      "launch-options": {
+        "game-url": "https://caletaholdings.com/staging/astrowild/index.html?server=external&baseUrl=https://staging.the-rgs.com/api&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbml0aWFsIjp0cnVlLCJhY2Nlc3MiOjQ3ODk5NjksInJuZCI6NDIyMzEzLCJmdW4iOnRydWV9.VEtumrOJcCr6pRR24124ZJiHzsJw876ar1ySYMG-XoU&gameCode=astrowild&lang=en",
+        "strategy": "detect"
+      }
+    }
+  }
+]

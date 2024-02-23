@@ -1,0 +1,26 @@
+{
+  "id": "544816",
+  "type": "casino-game",
+  "attributes": {
+    "title": "Astro Wild",
+    "provider-game-id": "cg_astrowild",
+    "provider": "caleta",
+    "categories": ["slots"],
+    "devices": ["desktop", "mobile"],
+    "image": "https://caletaholdings.com/staging/astrowild/assets/game/lobby/icon.jpg",
+    "table": null,
+    "limit-id": null,
+    "is-mini-game": false,
+    "is-new": true,
+    "is-single-currency": false,
+    "is-favorite": false,
+    "has-freespins": false,
+    "has-demo": true,
+    "tags": null,
+    "launch-options": {
+      "strategy": "detect"
+    },
+    "creation-date": "2022-07-27 14:40:23",
+    "new-activation-date": null
+  }
+}

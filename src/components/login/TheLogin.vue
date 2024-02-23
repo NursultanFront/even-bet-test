@@ -47,8 +47,8 @@ watch(password, () => flushError(FormField.Password))
 </script>
 
 <template>
-  <main>
-    <form @submit.prevent="onFinishLogin">
+  <section class="login-section">
+    <form class="login-section__form" @submit.prevent="onFinishLogin">
       <TheInput
         v-model="login"
         placeholder="Логин"
@@ -63,5 +63,21 @@ watch(password, () => flushError(FormField.Password))
       />
       <TheButton type="submit" :disabled="!canSubmit">Войти</TheButton>
     </form>
-  </main>
+  </section>
 </template>
+
+<style scoped lang="scss">
+.login-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+
+  &__form {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+}
+</style>
